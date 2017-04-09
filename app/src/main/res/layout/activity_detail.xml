@@ -79,13 +79,15 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -183,22 +185,14 @@
 
         </LinearLayout>
 
-            <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:background="#000000"
-                >
-
-            </View>
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="61.8dp"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:elevation="0dp"
-                style="@style/TextAppearance.Design.Tab.Active"
+                android:layout_height="wrap_content"
                 app:tabMode="fixed"
-                android:fillViewport="false">
+                app:tabGravity="fill"
+                style="@style/TextAppearance.Design.Tab.Active">
+
             </android.support.design.widget.TabLayout>
 
 
@@ -210,7 +204,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
 
-</android.support.v4.view.ViewPager>
+        </android.support.v4.view.ViewPager>
 
     </LinearLayout>
 

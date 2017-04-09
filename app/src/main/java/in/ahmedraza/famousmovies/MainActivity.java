@@ -1,6 +1,5 @@
 package in.ahmedraza.famousmovies;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,12 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private BottomNavigationView mBottomNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PopularMoviesFragment popularMoviesFragment = new PopularMoviesFragment();
+        fragmentTransaction.add(R.id.fragment_container, popularMoviesFragment, "HELLO");
+        fragmentTransaction.commit();
+
+
         mBottomNav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener()
         {
@@ -46,11 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        PopularMoviesFragment popularMoviesFragment = new PopularMoviesFragment();
-        fragmentTransaction.add(R.id.fragment_container, popularMoviesFragment, "HELLO");
-        fragmentTransaction.commit();
+
     }
 
 
@@ -64,12 +67,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void clickToDetail(View view)
+  /*  public void clickToDetail(View view)
     {
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -135,14 +138,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = mItem.getItemId();
 
         if (id==R.id.menu_popular){
-            //Toast.makeText(MainActivity.this, "Popular and Muscular", Toast.LENGTH_SHORT).show();
             mFragment = new PopularMoviesFragment();
             ft.replace(R.id.fragment_container, mFragment);
             ft.addToBackStack(null);
             ft.commit();
         }
         else if (id==R.id.menu_favourites){
-            //Toast.makeText(MainActivity.this, "Favourites and boring", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Favourites and boring", Toast.LENGTH_SHORT).show();
             mFragment = new FavouriteMoviesFragment();
             ft.replace(R.id.fragment_container, mFragment);
             ft.addToBackStack(null);
@@ -150,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         else if (id==R.id.menu_rated){
-            //Toast.makeText(MainActivity.this, "Rated and marked®", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Rated and marked®", Toast.LENGTH_SHORT).show();
             mFragment = new TopratedMoviesFragment();
             ft.replace(R.id.fragment_container, mFragment);
             ft.addToBackStack(null);
@@ -160,4 +162,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
+
 }
