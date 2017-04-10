@@ -18,14 +18,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.ContentValues.TAG;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FavouriteMoviesFragment extends Fragment {
 
-    private final static String API_KEY = "7b68fe1fe71d23838afc32790bd1c939";
-    private static final String TAG = FavouriteMoviesFragment.class.getSimpleName();
+    private String API_KEY2 = "7b68fe1fe71d23838afc32790bd1c939";
+
+    /*private final static String API_KEY = "7b68fe1fe71d23838afc32790bd1c939";
+    private static final String TAG = FavouriteMoviesFragment.class.getSimpleName();*/
     public FavouriteMoviesFragment() {
         // Required empty public constructor
     }
@@ -47,7 +51,7 @@ public class FavouriteMoviesFragment extends Fragment {
                 ApiInterface apiService =
                         ApiClient.getClient().create(ApiInterface.class);
 
-                Call<MoviesCollection> call = apiService.getPopularMovie(API_KEY);
+                Call<MoviesCollection> call = apiService.getPopularMovie(API_KEY2);
                 String urlMovie = call.request().url().toString();
 
                 Log.v("URL Movie", urlMovie);

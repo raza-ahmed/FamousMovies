@@ -6,7 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import in.ahmedraza.famousmovies.custom.MoviesCollection;
 
 /**
  * Created by ahmedraza on 06/04/17.
@@ -14,12 +19,16 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> {
 
-    private List<ItemObject> itemList;
-    private Context context;
+    private ArrayList<MoviesCollection.Movies> mItems;
+    private ListActionListener mActionListener;
 
-    public RecyclerViewAdapter(Context context, List<ItemObject> itemList) {
-        this.itemList = itemList;
-        this.context = context;
+    private List<ItemObject> itemList;
+    private Context mContext;
+
+    public RecyclerViewAdapter(Context context, ListActionListener listener) {
+        mActionListener = listener;
+        mItems = new ArrayList<>();
+        this.mContext = context;
     }
 
     @Override
@@ -31,14 +40,45 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolders holder, int position) {
-        holder.countryName.setText(itemList.get(position).getName());
-        holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+    public void onBindViewHolder(MovieViewHolders holder, final int position) {
+
+        Picasso.with(mContext)
+                .load(mItems.get(position).getPosterUrl())
+                .placeholder(R.drawable.thumb)
+                .fit().centerCrop()
+                .into(holder.mThumbView);
+
+
+
+        holder.countryName.setText(mItems.get(position).title);
+       // holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
+        holder.mThumbView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                mActionListener.onMovieSelected(mItems.get(position));
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return this.itemList.size();
+        return mItems.size();
+    }
+
+    public void setItems(ArrayList<MoviesCollection.Movies> items){
+        mItems = items;
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<MoviesCollection.Movies> getItems() {
+        return mItems;
+    }
+
+
+
+    public interface ListActionListener{
+        void onMovieSelected(MoviesCollection.Movies movie);
     }
 }
 

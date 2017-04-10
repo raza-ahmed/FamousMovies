@@ -16,11 +16,14 @@ public class MovieViewHolders extends RecyclerView.ViewHolder implements View.On
     public TextView countryName;
     public ImageView countryPhoto;
 
+    final public ImageView mThumbView;
+
     public MovieViewHolders(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
         countryName = (TextView)itemView.findViewById(R.id.country_name);
-        countryPhoto = (ImageView)itemView.findViewById(R.id.country_photo);
+        this.mThumbView = (ImageView) itemView.findViewById(R.id.country_photo);
+        //countryPhoto = (ImageView)itemView.findViewById(R.id.country_photo);
     }
 
     @Override
