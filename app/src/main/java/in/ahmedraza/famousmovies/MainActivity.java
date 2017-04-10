@@ -18,11 +18,46 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private BottomNavigationView mBottomNav;
+    private final static String API_KEY = "7b68fe1fe71d23838afc32790bd1c939";
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+/*
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+
+        Call<MoviesCollection> call = apiService.getPopularMovie(API_KEY);
+        call.enqueue(new Callback<MoviesCollection>() {
+            @Override
+            public void onResponse(Call<MoviesCollection>call, Response<MoviesCollection> response) {
+
+               // String result = response.body().getPosterUrl();
+
+               ArrayList<MoviesCollection.Movies> newresult = response.body().results;
+                StringBuilder sb = new StringBuilder();
+
+                for (MoviesCollection.Movies s : newresult)
+                {
+                    sb.append(s);
+                    sb.append("\t");
+                }
+                //MoviesCollection movies = response.body().getPosterUrl();
+
+               Log.v("Movie list", sb.toString());
+            }
+
+            @Override
+            public void onFailure(Call<MoviesCollection>call, Throwable t) {
+                // Log error here since request failed
+                Log.e(TAG, t.toString());
+            }
+        });
+*/
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
