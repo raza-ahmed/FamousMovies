@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
+import in.ahmedraza.famousmovies.helper.ColumnUtility;
 import in.ahmedraza.famousmovies.retrofit.ApiClient;
 import in.ahmedraza.famousmovies.retrofit.ApiInterface;
 import retrofit2.Call;
@@ -84,9 +85,9 @@ public class PopularMoviesFragment extends Fragment {
         });
 
 
-
+        int mNoOfColumns = ColumnUtility.calculateNoOfColumns(getActivity());
         List<ItemObject> rowListItem = getAllItemList();
-        GridLayoutManager lLayout = new GridLayoutManager(getActivity(), 3);
+        GridLayoutManager lLayout = new GridLayoutManager(getActivity(), mNoOfColumns);
 
         RecyclerView rView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
         rView.setHasFixedSize(true);
