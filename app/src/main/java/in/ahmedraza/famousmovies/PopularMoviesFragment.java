@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.helper.ColumnUtility;
+import in.ahmedraza.famousmovies.helper.NetworkStatus;
 import in.ahmedraza.famousmovies.retrofit.ApiClient;
 import in.ahmedraza.famousmovies.retrofit.ApiInterface;
 import retrofit2.Call;
@@ -43,7 +47,43 @@ public class PopularMoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+        final View rootview = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+
+
+        if (NetworkStatus.getInstance(getActivity()).isOnline()) {
+
+            Toast.makeText(getActivity(),"You are online!!!!", Toast.LENGTH_SHORT).show();
+
+
+
+        } else {
+
+            Toast.makeText(getActivity(),"You are offline :(((", Toast.LENGTH_SHORT).show();
+
+            LinearLayout linearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
+            linearLayout.setVisibility(View.VISIBLE);
+
+
+            android.support.v7.widget.RecyclerView recyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
+            recyclerView.setVisibility(View.INVISIBLE);
+
+            TextView textView = (TextView) rootview.findViewById(R.id.errorText);
+            textView.setText("Check your Internet Connection");
+
+
+            //Toast t = Toast.makeText(this,"You are not online!!!!",8000).show();
+            Log.v("Home", "############################You are not online!!!!");
+        }
+
+        android.support.v7.widget.AppCompatButton buttonRetry = (android.support.v7.widget.AppCompatButton) rootview.findViewById(R.id.buttonRetry);
+
+        buttonRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
 
 
         ApiInterface apiService =
@@ -58,23 +98,19 @@ public class PopularMoviesFragment extends Fragment {
             @Override
             public void onResponse(Call<MoviesCollection>call, Response<MoviesCollection> response) {
 
-
+                if (response.isSuccessful()){
 
                 ArrayList<MoviesCollection.Movies> moviesCollection = response.body().results;
                 mAdapter.setItems(moviesCollection);
-                // String result = response.body().getPosterUrl();
 
-               /* ArrayList<MoviesCollection.Movies> newresult = response.body().results;
-                StringBuilder sb = new StringBuilder();
+                }
 
-                for (MoviesCollection.Movies s : newresult)
-                {
-                    sb.append(s);
-                    sb.append("\t");
-                }*/
-                //MoviesCollection movies = response.body().getPosterUrl();
+                else{
+                    LinearLayout linearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
+                    linearLayout.setVisibility(View.VISIBLE);
 
-               // Log.v("Movie list", sb.toString());
+                }
+
             }
 
             @Override

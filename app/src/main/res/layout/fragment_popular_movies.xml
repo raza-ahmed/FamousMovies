@@ -1,15 +1,56 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="in.ahmedraza.famousmovies.PopularMoviesFragment">
+
+    <LinearLayout
+        android:id="@+id/errorPopular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="136dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:src="@drawable/error" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/errorText"
+            android:text="Something went wrong!!!"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:textColor="@color/colorUnselected"
+            android:textSize="22sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TRY AGAIN"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorAccent" />
+    </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:paddingBottom="60dp"/>
+        android:paddingBottom="60dp"
+        android:scrollbars="vertical" />
 
 </FrameLayout>

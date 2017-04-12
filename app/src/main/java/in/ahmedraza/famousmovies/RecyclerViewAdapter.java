@@ -1,6 +1,7 @@
 package in.ahmedraza.famousmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,8 +56,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
         holder.mThumbView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                mActionListener.onMovieSelected(mItems.get(position));
-
+               // mActionListener.onMovieSelected(mItems.get(position));
+                Intent intent = new Intent(mContext, DetailActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }
