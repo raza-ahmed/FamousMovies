@@ -26,37 +26,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-        Call<MoviesCollection> call = apiService.getPopularMovie(API_KEY);
-        call.enqueue(new Callback<MoviesCollection>() {
-            @Override
-            public void onResponse(Call<MoviesCollection>call, Response<MoviesCollection> response) {
-
-               // String result = response.body().getPosterUrl();
-
-               ArrayList<MoviesCollection.Movies> newresult = response.body().results;
-                StringBuilder sb = new StringBuilder();
-
-                for (MoviesCollection.Movies s : newresult)
-                {
-                    sb.append(s);
-                    sb.append("\t");
-                }
-                //MoviesCollection movies = response.body().getPosterUrl();
-
-               Log.v("Movie list", sb.toString());
-            }
-
-            @Override
-            public void onFailure(Call<MoviesCollection>call, Throwable t) {
-                // Log error here since request failed
-                Log.e(TAG, t.toString());
-            }
-        });
-*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         PopularMoviesFragment popularMoviesFragment = new PopularMoviesFragment();
-        fragmentTransaction.add(R.id.fragment_container, popularMoviesFragment, "HELLO");
+        fragmentTransaction.replace(R.id.fragment_container, popularMoviesFragment, "HELLO");
         fragmentTransaction.commit();
 
 
@@ -102,12 +71,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-  /*  public void clickToDetail(View view)
-    {
-        Intent intent = new Intent(this, DetailActivity.class);
-        startActivity(intent);
-    }
-*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -131,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

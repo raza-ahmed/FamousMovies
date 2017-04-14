@@ -12,10 +12,10 @@ import android.util.Log;
 public class NetworkStatus  {
 
     private static NetworkStatus instance = new NetworkStatus();
-    static Context context;
-    ConnectivityManager connectivityManager;
+    private static Context context;
+    private ConnectivityManager connectivityManager;
     NetworkInfo wifiInfo, mobileInfo;
-    boolean connected = false;
+    private boolean connected = false;
 
     public static NetworkStatus getInstance(Context ctx) {
         context = ctx.getApplicationContext();

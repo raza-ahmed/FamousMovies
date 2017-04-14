@@ -1,8 +1,10 @@
 package in.ahmedraza.famousmovies;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,15 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.helper.ColumnUtility;
 import in.ahmedraza.famousmovies.helper.NetworkStatus;
+import in.ahmedraza.famousmovies.helper.RecyclerItemClickListener;
 import in.ahmedraza.famousmovies.retrofit.ApiClient;
 import in.ahmedraza.famousmovies.retrofit.ApiInterface;
 import retrofit2.Call;
@@ -36,54 +39,97 @@ public class PopularMoviesFragment extends Fragment {
     private static final String TAG = FavouriteMoviesFragment.class.getSimpleName();
 
     private MoviesCollection movies;
+    private LinearLayout mLinearLayout;
+    private RecyclerView mRecyclerView;
     private RecyclerViewAdapter mAdapter;
+    private TextView mTextview;
+    private ProgressBar mProgressBar;
+    private ArrayList<MoviesCollection.Movies> moviesCollection;
     private RecyclerViewAdapter.ListActionListener mActionListener;
+
     public PopularMoviesFragment() {
         // Required empty public constructor
     }
 
 
     @Override
+    public void onStart() {
+        super.onStart();
+        loadData();
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+        mRecyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
+        mLinearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
+        mTextview = (TextView) rootview.findViewById(R.id.errorText);
+        mProgressBar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
+
+        AppCompatButton buttonRetry = (AppCompatButton) rootview.findViewById(R.id.buttonRetry);
+        buttonRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Trying to Reconnect", Toast.LENGTH_SHORT).show();
+                loadData();
+            }
+        });
+
+        loadData();
+
+        int mNoOfColumns = ColumnUtility.calculateNoOfColumns(getActivity());
+        GridLayoutManager lLayout = new GridLayoutManager(getActivity(), mNoOfColumns);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(lLayout);
+        mAdapter = new RecyclerViewAdapter(getActivity(), mActionListener);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        MoviesCollection.Movies movies = moviesCollection.get(position);
+                        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                        //intent.putExtra(DetailActivity.MOVIE_ARG, movies);
+                        getActivity().startActivity(intent);
+                        Toast.makeText(getActivity(), movies.title + " is selected!", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                })
+        );
+
+        return rootview;
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("items", mAdapter.getItems());
+        super.onSaveInstanceState(outState);
+    }
+
+    private void loadData() {
 
 
         if (NetworkStatus.getInstance(getActivity()).isOnline()) {
-
-            Toast.makeText(getActivity(),"You are online!!!!", Toast.LENGTH_SHORT).show();
-
-
+            mProgressBar.setVisibility(View.VISIBLE);
+            mLinearLayout.setVisibility(View.INVISIBLE);
+            mRecyclerView.setVisibility(View.VISIBLE);
 
         } else {
 
-            Toast.makeText(getActivity(),"You are offline :(((", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "You are offline :(((", Toast.LENGTH_SHORT).show();
 
-            LinearLayout linearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
-            linearLayout.setVisibility(View.VISIBLE);
-
-
-            android.support.v7.widget.RecyclerView recyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
-            recyclerView.setVisibility(View.INVISIBLE);
-
-            TextView textView = (TextView) rootview.findViewById(R.id.errorText);
-            textView.setText("Check your Internet Connection");
-
+            mLinearLayout.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.INVISIBLE);
+            mTextview.setText(R.string.internet_eror_message);
 
             //Toast t = Toast.makeText(this,"You are not online!!!!",8000).show();
             Log.v("Home", "############################You are not online!!!!");
         }
-
-        android.support.v7.widget.AppCompatButton buttonRetry = (android.support.v7.widget.AppCompatButton) rootview.findViewById(R.id.buttonRetry);
-
-        buttonRetry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
 
 
         ApiInterface apiService =
@@ -96,67 +142,31 @@ public class PopularMoviesFragment extends Fragment {
 
         call.enqueue(new Callback<MoviesCollection>() {
             @Override
-            public void onResponse(Call<MoviesCollection>call, Response<MoviesCollection> response) {
+            public void onResponse(Call<MoviesCollection> call, Response<MoviesCollection> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
-                ArrayList<MoviesCollection.Movies> moviesCollection = response.body().results;
-                mAdapter.setItems(moviesCollection);
+                    moviesCollection = response.body().results;
+                    mAdapter.setItems(moviesCollection);
+                    mProgressBar.setVisibility(View.INVISIBLE);
 
-                }
+                } else {
 
-                else{
-                    LinearLayout linearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
-                    linearLayout.setVisibility(View.VISIBLE);
+                    mLinearLayout.setVisibility(View.VISIBLE);
 
                 }
 
             }
 
             @Override
-            public void onFailure(Call<MoviesCollection>call, Throwable t) {
+            public void onFailure(Call<MoviesCollection> call, Throwable t) {
                 // Log error here since request failed
                 Log.e(TAG, t.toString());
             }
         });
 
 
-        int mNoOfColumns = ColumnUtility.calculateNoOfColumns(getActivity());
-        List<ItemObject> rowListItem = getAllItemList();
-        GridLayoutManager lLayout = new GridLayoutManager(getActivity(), mNoOfColumns);
-
-        RecyclerView rView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
-        rView.setHasFixedSize(true);
-        rView.setLayoutManager(lLayout);
-
-        mAdapter = new RecyclerViewAdapter(getActivity(), mActionListener);
-        rView.setAdapter(mAdapter);
-
-        return rootview;
     }
 
-
-    private List<ItemObject> getAllItemList(){
-
-        List<ItemObject> allItems = new ArrayList<ItemObject>();
-        allItems.add(new ItemObject("United States", R.drawable.thumb));
-        allItems.add(new ItemObject("Canada", R.drawable.thumb));
-        allItems.add(new ItemObject("United Kingdom", R.drawable.thumb));
-        allItems.add(new ItemObject("Germany", R.drawable.thumb));
-        allItems.add(new ItemObject("Sweden", R.drawable.thumb));
-        allItems.add(new ItemObject("United Kingdom", R.drawable.thumb));
-        allItems.add(new ItemObject("Germany", R.drawable.thumb));
-        allItems.add(new ItemObject("Sweden", R.drawable.thumb));
-        allItems.add(new ItemObject("United States", R.drawable.thumb));
-        allItems.add(new ItemObject("Canada", R.drawable.thumb));
-        allItems.add(new ItemObject("United Kingdom", R.drawable.thumb));
-        allItems.add(new ItemObject("Germany", R.drawable.thumb));
-        allItems.add(new ItemObject("Sweden", R.drawable.thumb));
-        allItems.add(new ItemObject("United Kingdom", R.drawable.thumb));
-        allItems.add(new ItemObject("Germany", R.drawable.thumb));
-        allItems.add(new ItemObject("Sweden", R.drawable.thumb));
-
-        return allItems;
-    }
 
 }

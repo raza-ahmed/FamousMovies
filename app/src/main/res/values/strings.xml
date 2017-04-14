@@ -19,4 +19,5 @@
     <string name="favourites_movies_text">Favourite sometimes</string>
     <string name="lorem">Contrary to popular belief</string>
     <string name="movie_info_placeholder">Movie Description will be displayed here</string>
+    <string name="internet_eror_message">Check your Internet Connection</string>
 </resources>

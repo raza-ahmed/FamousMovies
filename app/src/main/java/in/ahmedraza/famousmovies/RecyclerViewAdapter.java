@@ -1,7 +1,6 @@
 package in.ahmedraza.famousmovies;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 
@@ -23,7 +21,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
     private ArrayList<MoviesCollection.Movies> mItems;
     private ListActionListener mActionListener;
 
-    private List<ItemObject> itemList;
     private Context mContext;
 
     public RecyclerViewAdapter(Context context, ListActionListener listener) {
@@ -53,14 +50,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
 
         holder.countryName.setText(mItems.get(position).title);
        // holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
-        holder.mThumbView.setOnClickListener(new View.OnClickListener(){
+        /*holder.mThumbView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                // mActionListener.onMovieSelected(mItems.get(position));
                 Intent intent = new Intent(mContext, DetailActivity.class);
                 mContext.startActivity(intent);
             }
-        });
+        });*/
+
     }
 
     @Override

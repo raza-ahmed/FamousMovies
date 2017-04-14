@@ -16,8 +16,6 @@ public class MoviesCollection {
     public ArrayList<Movies> results;
 
 
-
-
     public static class Movies implements Parcelable {
 
         @SerializedName("original_title")

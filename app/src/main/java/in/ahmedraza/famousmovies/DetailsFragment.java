@@ -1,65 +1,55 @@
 package in.ahmedraza.famousmovies;
 
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import in.ahmedraza.famousmovies.custom.MoviesCollection;
 
-public class DetailActivity extends AppCompatActivity {
-
-
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class DetailsFragment extends Fragment {
 
 
-        MoviesCollection.Movies movies;
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-           // movies = extras.getParcelable(DetailActivity.MOVIE_ARG);
-        }
-        else {
-            throw new NullPointerException("Intent extras is empty");
-        }
+    public final static String MOVIE_ARG = "movie";
 
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        setupViewPager(viewPager);
-
-
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("");
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-
-
+    public DetailsFragment() {
+        // Required empty public constructor
     }
 
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootview = inflater.inflate(R.layout.fragment_details, container, false);
+
+        ViewPager viewPager = (ViewPager) rootview.findViewById(R.id.pager);
+        setupViewPager(viewPager);
+
+
+        TabLayout tabLayout = (TabLayout) rootview.findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        return rootview;
+    }
+
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
         adapter.addFragment(new MovieInfo(), "Info");
         adapter.addFragment(new MovieRating(), "Rating");
         viewPager.setAdapter(adapter);
     }
-
 
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -90,7 +80,5 @@ public class DetailActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
-
-
 
 }
