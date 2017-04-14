@@ -54,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
             @Override
             public void onClick(View view){
                // mActionListener.onMovieSelected(mItems.get(position));
-                Intent intent = new Intent(mContext, DetailActivity.class);
+                Intent intent = new Intent(mContext, DetailsActivity.class);
                 mContext.startActivity(intent);
             }
         });*/

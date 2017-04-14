@@ -28,7 +28,7 @@ public class MovieViewHolders extends RecyclerView.ViewHolder {
     public void onClick(View view, int position) {
         MoviesCollection.Movies movies = mItems.get(position);
         Context context = itemView.getContext();
-        Intent intent = new Intent(context, DetailActivity.class);
+        Intent intent = new Intent(context, DetailsActivity.class);
         context.startActivity(intent);
     }*/
 }

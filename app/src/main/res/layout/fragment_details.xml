@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="in.ahmedraza.famousmovies.DetailActivity">
+    tools:context="in.ahmedraza.famousmovies.DetailsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/playButton"
                     android:layout_centerHorizontal="true"
-                    android:text="Play Trailer"
+                    android:text="@string/play_trailer"
                     android:textSize="20sp"
                     android:textColor="@color/white" />
 
@@ -108,7 +108,7 @@
                         android:layout_height="150dp"
                         android:padding="@dimen/activity_horizontal_margin"
                         android:scaleType="fitStart"
-
+                        android:id="@+id/poster_image"
                         android:src="@drawable/thumb"/>
 
 
@@ -124,7 +124,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="I am the Movie Title"
+                        android:id="@+id/movie_title"
+                        android:text="@string/movie_title"
                         android:textStyle="bold"
                         android:textColor="@color/textColor"
                         android:textSize="22sp"
@@ -135,7 +136,8 @@
                         android:layout_width="match_parent"
                         android:layout_marginTop="10dp"
                         android:layout_height="wrap_content"
-                        android:text="2017 - 02 - 28"
+                        android:id="@+id/movie_releasedate"
+                        android:text="@string/date_placeholder"
                         android:textColor="@color/textColor"
                         android:textSize="16sp"
                         />
@@ -173,7 +175,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10dp"
-                            android:text="7.4"
+                            android:id="@+id/movie_rating"
+                            android:text="@string/movie_rating"
                             android:textColor="@color/textColor"
                             android:textSize="16sp"
                             />

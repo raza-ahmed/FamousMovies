@@ -1,9 +1,10 @@
 package in.ahmedraza.famousmovies;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+
+import in.ahmedraza.famousmovies.custom.MoviesCollection;
+import in.ahmedraza.famousmovies.helper.Constants;
 
 /**
  * Created by ahmedraza on 14/04/17.
@@ -18,23 +19,21 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-       /* MoviesCollection.Movies movies;
+        MoviesCollection.Movies movies;
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            movies = extras.getParcelable(DetailsFragment.MOVIE_ARG);
+            movies = extras.getParcelable(Constants.MOVIE_ARG);
         }
         else {
             throw new NullPointerException("Intent extras is empty");
         }
-*/
 
-       FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                DetailsFragment detailsFragment = new DetailsFragment();
-        fragmentTransaction.replace(R.id.container, detailsFragment)
+
+        DetailsFragment fragment = DetailsFragment.getInstance(movies);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, fragment)
                 .commit();
-
-
 
 
     }

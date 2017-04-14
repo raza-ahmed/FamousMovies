@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.helper.ColumnUtility;
+import in.ahmedraza.famousmovies.helper.Constants;
 import in.ahmedraza.famousmovies.helper.NetworkStatus;
 import in.ahmedraza.famousmovies.helper.RecyclerItemClickListener;
 import in.ahmedraza.famousmovies.retrofit.ApiClient;
@@ -92,11 +93,9 @@ public class PopularMoviesFragment extends Fragment {
                     public void onItemClick(View view, int position) {
                         MoviesCollection.Movies movies = moviesCollection.get(position);
                         Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                        //intent.putExtra(DetailActivity.MOVIE_ARG, movies);
+                        intent.putExtra(Constants.MOVIE_ARG, movies);
                         getActivity().startActivity(intent);
-                        Toast.makeText(getActivity(), movies.title + " is selected!", Toast.LENGTH_SHORT).show();
-
-
+                        
                     }
                 })
         );
@@ -107,7 +106,7 @@ public class PopularMoviesFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("items", mAdapter.getItems());
+        outState.putParcelableArrayList(Constants.ARG_ITEMS, mAdapter.getItems());
         super.onSaveInstanceState(outState);
     }
 

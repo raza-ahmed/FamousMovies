@@ -20,4 +20,8 @@
     <string name="lorem">Contrary to popular belief</string>
     <string name="movie_info_placeholder">Movie Description will be displayed here</string>
     <string name="internet_eror_message">Check your Internet Connection</string>
+    <string name="play_trailer">Play Trailer</string>
+    <string name="movie_title">I am the Movie Title</string>
+    <string name="date_placeholder">2017 - 02 - 28</string>
+    <string name="movie_rating">7.4</string>
 </resources>
