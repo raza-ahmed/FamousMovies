@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -82,10 +83,7 @@ public class MovieRating extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_movie_rating, container, false);
         recyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_review_view);
-
-
         movieId =  mMovies.id;
-
         loadReviews();
 
 
@@ -124,8 +122,12 @@ public class MovieRating extends Fragment {
 
                     mReviewsArrayList = response.body().results;
 
-                    mAdapter.setItems(mReviewsArrayList);
-
+                    if (mReviewsArrayList.size() != 0) {
+                        mAdapter.setItems(mReviewsArrayList);
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "No reviews here", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Log.e("Missed the network call", "Sorry");
                 }
