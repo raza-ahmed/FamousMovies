@@ -29,4 +29,6 @@
     <string name="error_msg">Something went wrong!!!</string>
     <string name="empty_review_author">No Reviews Found</string>
     <string name="empty_review_content">User yet to review the movie</string>
+    <string name="movie_description_heading">Movie Description</string>
+    <string name="movie_review_heading">Reviews</string>
 </resources>
