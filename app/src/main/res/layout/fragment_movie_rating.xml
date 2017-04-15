@@ -9,21 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="in.ahmedraza.famousmovies.MovieRating">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/review_author"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_review_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_review_author"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/review_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_review_content"
-        android:textSize="14sp" />
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>

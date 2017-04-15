@@ -35,10 +35,7 @@ import retrofit2.Response;
  */
 public class PopularMoviesFragment extends Fragment {
 
-
-
     private static final String TAG = PopularMoviesFragment.class.getSimpleName();
-
     private MoviesCollection movies;
     private LinearLayout mLinearLayout;
     private RecyclerView mRecyclerView;
@@ -129,7 +126,7 @@ public class PopularMoviesFragment extends Fragment {
             mTextview.setText(R.string.internet_eror_message);
 
             //Toast t = Toast.makeText(this,"You are not online!!!!",8000).show();
-            Log.v("Home", "############################You are not online!!!!");
+            Log.v("Home", "You are not offline!!!!");
         }
 
 
@@ -139,7 +136,7 @@ public class PopularMoviesFragment extends Fragment {
         Call<MoviesCollection> call = apiService.getPopularMovie(Constants.API_KEY);
         String urlMovie = call.request().url().toString();
 
-        Log.v("URL Movie", urlMovie);
+        Log.v("URLMovie", urlMovie);
 
         call.enqueue(new Callback<MoviesCollection>() {
             @Override

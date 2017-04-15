@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class MovieReview {
 
-    public ArrayList<Reviews> reviewResults;
+    public ArrayList<Reviews> results;
 
     public static class Reviews implements Parcelable {
 
@@ -21,7 +21,7 @@ public class MovieReview {
         public String author;
 
         @SerializedName("content")
-        private String content;
+        public String content;
 
 
 

@@ -19,9 +19,10 @@ import in.ahmedraza.famousmovies.custom.MoviesCollection;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> {
 
     private ArrayList<MoviesCollection.Movies> mItems;
+    private Context mContext;
     private ListActionListener mActionListener;
 
-    private Context mContext;
+
 
     public RecyclerViewAdapter(Context context, ListActionListener listener) {
         mActionListener = listener;
@@ -45,9 +46,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
                 .placeholder(R.drawable.thumb)
                 .fit().centerCrop()
                 .into(holder.mThumbView);
-
-
-
         holder.movieName.setText(mItems.get(position).title);
 
 
@@ -66,6 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
     public ArrayList<MoviesCollection.Movies> getItems() {
         return mItems;
     }
+
 
 
 

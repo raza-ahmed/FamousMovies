@@ -27,7 +27,7 @@ public class DetailsFragment extends Fragment {
     private TextView mMovieRatingText;
     private TextView mReleaseDateText;
     private TextView mMovieTitle;
-
+    private android.support.v7.widget.AppCompatRatingBar mRatingBar;
 
     private TextView mMovieOverviewText;
     private MovieInfo movieInfo = new MovieInfo();
@@ -62,6 +62,8 @@ public class DetailsFragment extends Fragment {
         mReleaseDateText = (TextView) rootview.findViewById(R.id.movie_releasedate);
         mMovieRatingText = (TextView) rootview.findViewById(R.id.movie_rating);
         mMovieTitle = (TextView) rootview.findViewById(R.id.movie_title);
+        mRatingBar = (android.support.v7.widget.AppCompatRatingBar) rootview.findViewById(R.id.rating);
+
 
         Picasso.with(getActivity())
                 .load(mMovies.getPosterUrl())
@@ -69,11 +71,12 @@ public class DetailsFragment extends Fragment {
                 .into(mPosterImageView);
 
 
+        float voteStars = mMovies.voteAverage/2;
         mMovieRatingText.setText(Float.toString(mMovies.voteAverage));
         mReleaseDateText.setText(mMovies.releasaeDate);
         mMovieTitle.setText(mMovies.title);
 
-
+        mRatingBar.setRating(voteStars);
 
         return rootview;
     }

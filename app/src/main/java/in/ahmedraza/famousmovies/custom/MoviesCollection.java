@@ -36,6 +36,9 @@ public class MoviesCollection {
         @SerializedName("id")
         public int id;
 
+        @SerializedName("backdrop_path")
+        public String backdropPath;
+
 
 
         protected Movies(Parcel in) {
@@ -45,6 +48,7 @@ public class MoviesCollection {
             voteAverage = in.readFloat();
             releasaeDate = in.readString();
             id = in.readInt();
+            backdropPath = in.readString();
         }
 
         @Override
@@ -55,6 +59,7 @@ public class MoviesCollection {
             dest.writeFloat(voteAverage);
             dest.writeString(releasaeDate);
             dest.writeInt(id);
+            dest.writeString(backdropPath);
         }
 
         @Override
@@ -78,6 +83,11 @@ public class MoviesCollection {
         public String getPosterUrl(){
             return THUMB_BASE_URL + "w185" + this.posterPath;
         }
+        public String getBackdropUrl(){
+            return THUMB_BASE_URL + "w185" + this.backdropPath;
+        }
+
         private final static String THUMB_BASE_URL = "http://image.tmdb.org/t/p/";
     }
+
 }
