@@ -1,4 +1,4 @@
-package in.ahmedraza.famousmovies;
+package in.ahmedraza.famousmovies.fragments;
 
 
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import in.ahmedraza.famousmovies.R;
+import in.ahmedraza.famousmovies.recycleViewHelper.ReviewViewAdapter;
 import in.ahmedraza.famousmovies.custom.MovieReview;
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.helper.Constants;

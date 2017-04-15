@@ -1,9 +1,11 @@
-package in.ahmedraza.famousmovies;
+package in.ahmedraza.famousmovies.recycleViewHelper;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import in.ahmedraza.famousmovies.R;
 
 /**
  * Created by ahmedraza on 06/04/17.

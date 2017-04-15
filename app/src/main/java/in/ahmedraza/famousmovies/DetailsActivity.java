@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.custom.VideoCollection;
+import in.ahmedraza.famousmovies.fragments.DetailsFragment;
+import in.ahmedraza.famousmovies.fragments.MovieInfo;
+import in.ahmedraza.famousmovies.fragments.MovieRating;
 import in.ahmedraza.famousmovies.helper.Constants;
 import in.ahmedraza.famousmovies.helper.ViewPagerAdapter;
 import in.ahmedraza.famousmovies.retrofit.ApiClient;

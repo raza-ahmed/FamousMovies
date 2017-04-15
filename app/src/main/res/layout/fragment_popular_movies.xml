@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="in.ahmedraza.famousmovies.PopularMoviesFragment">
+    tools:context="in.ahmedraza.famousmovies.fragments.PopularMoviesFragment">
 
     <ProgressBar
         android:id="@+id/progress_bar"

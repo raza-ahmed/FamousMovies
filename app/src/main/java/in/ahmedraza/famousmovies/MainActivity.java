@@ -15,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import in.ahmedraza.famousmovies.fragments.FavouriteMoviesFragment;
+import in.ahmedraza.famousmovies.fragments.PopularMoviesFragment;
+import in.ahmedraza.famousmovies.fragments.TopratedMoviesFragment;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private BottomNavigationView mBottomNav;

@@ -1,4 +1,4 @@
-package in.ahmedraza.famousmovies;
+package in.ahmedraza.famousmovies.recycleViewHelper;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import in.ahmedraza.famousmovies.R;
 import in.ahmedraza.famousmovies.custom.MovieReview;
 
 /**

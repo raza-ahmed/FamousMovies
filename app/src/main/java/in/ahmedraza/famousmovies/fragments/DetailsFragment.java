@@ -1,4 +1,4 @@
-package in.ahmedraza.famousmovies;
+package in.ahmedraza.famousmovies.fragments;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import in.ahmedraza.famousmovies.R;
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import in.ahmedraza.famousmovies.helper.Constants;
 
