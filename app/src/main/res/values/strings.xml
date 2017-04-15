@@ -24,4 +24,7 @@
     <string name="movie_title">I am the Movie Title</string>
     <string name="date_placeholder">2017 - 02 - 28</string>
     <string name="movie_rating">7.4</string>
+    <string name="movie_img">Poster Image</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="error_msg">Something went wrong!!!</string>
 </resources>

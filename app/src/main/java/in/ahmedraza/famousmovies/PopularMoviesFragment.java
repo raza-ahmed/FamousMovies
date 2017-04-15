@@ -66,6 +66,7 @@ public class PopularMoviesFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_popular_movies, container, false);
         mRecyclerView = (RecyclerView) rootview.findViewById(R.id.recycler_view);
+        mRecyclerView.setNestedScrollingEnabled(false);
         mLinearLayout = (LinearLayout) rootview.findViewById(R.id.errorPopular);
         mTextview = (TextView) rootview.findViewById(R.id.errorText);
         mProgressBar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
@@ -95,7 +96,7 @@ public class PopularMoviesFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), DetailsActivity.class);
                         intent.putExtra(Constants.MOVIE_ARG, movies);
                         getActivity().startActivity(intent);
-                        
+
                     }
                 })
         );
@@ -116,13 +117,14 @@ public class PopularMoviesFragment extends Fragment {
         if (NetworkStatus.getInstance(getActivity()).isOnline()) {
             mProgressBar.setVisibility(View.VISIBLE);
             mLinearLayout.setVisibility(View.INVISIBLE);
-            mRecyclerView.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.INVISIBLE);
 
         } else {
 
             Toast.makeText(getActivity(), "You are offline :(((", Toast.LENGTH_SHORT).show();
 
             mLinearLayout.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
             mRecyclerView.setVisibility(View.INVISIBLE);
             mTextview.setText(R.string.internet_eror_message);
 
@@ -148,11 +150,14 @@ public class PopularMoviesFragment extends Fragment {
                     moviesCollection = response.body().results;
                     mAdapter.setItems(moviesCollection);
                     mProgressBar.setVisibility(View.INVISIBLE);
+                    mLinearLayout.setVisibility(View.INVISIBLE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
 
                 } else {
 
                     mLinearLayout.setVisibility(View.VISIBLE);
-
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    mRecyclerView.setVisibility(View.INVISIBLE);
                 }
 
             }

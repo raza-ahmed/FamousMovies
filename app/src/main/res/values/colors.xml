@@ -11,5 +11,6 @@
     <color name="transBlack">#70000000 </color>
     <color name="textColor">#033644</color>
     <color name="textInactive">#6A8389</color>
+    <color name="headingColor">#033027</color>
 
 </resources>

@@ -1,100 +1,9 @@
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="in.ahmedraza.famousmovies.DetailsActivity">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
-
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp"
-            >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                app:layout_collapseMode="parallax">
-
-                <ImageView
-                    android:id="@+id/toolbarImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:fitsSystemWindows="true"
-                    android:src="@drawable/bg"
-                    app:layout_collapseMode="parallax" />
-
-                <ImageView
-                    android:id="@+id/playButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_play_video"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/playButton"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/play_trailer"
-                    android:textSize="20sp"
-                    android:textColor="@color/white" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/colorPrimaryTrans" />
-
-            </RelativeLayout>
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin" />
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fillViewport="true">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                >
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
                 <LinearLayout
@@ -106,6 +15,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="150dp"
+                        android:contentDescription="@string/movie_img"
                         android:padding="@dimen/activity_horizontal_margin"
                         android:scaleType="fitStart"
                         android:id="@+id/poster_image"
@@ -174,7 +84,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
+                            android:layout_marginLeft="10dp"
                             android:id="@+id/movie_rating"
                             android:text="@string/movie_rating"
                             android:textColor="@color/textColor"
@@ -188,37 +98,3 @@
 
             </LinearLayout>
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabMode="fixed"
-                app:tabGravity="fill"
-                style="@style/TextAppearance.Design.Tab.Active">
-
-            </android.support.design.widget.TabLayout>
-
-
-            <android.support.v4.view.ViewPager
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-
-
-            </android.support.v4.view.ViewPager>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/ic_star_unselected"
-        app:layout_anchor="@id/appBar"
-        app:layout_anchorGravity="bottom|end" />
-
-</android.support.design.widget.CoordinatorLayout>

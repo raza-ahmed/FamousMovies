@@ -12,23 +12,17 @@ import android.widget.TextView;
 public class MovieViewHolders extends RecyclerView.ViewHolder {
 
 
-    public TextView countryName;
+    public TextView movieName;
 
     final public ImageView mThumbView;
 
     public MovieViewHolders(View itemView) {
         super(itemView);
 
-        countryName = (TextView)itemView.findViewById(R.id.country_name);
+        movieName = (TextView)itemView.findViewById(R.id.country_name);
         this.mThumbView = (ImageView) itemView.findViewById(R.id.country_photo);
 
     }
 
-   /* @Override
-    public void onClick(View view, int position) {
-        MoviesCollection.Movies movies = mItems.get(position);
-        Context context = itemView.getContext();
-        Intent intent = new Intent(context, DetailsActivity.class);
-        context.startActivity(intent);
-    }*/
+
 }

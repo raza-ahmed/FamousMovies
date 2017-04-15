@@ -48,16 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolders> 
 
 
 
-        holder.countryName.setText(mItems.get(position).title);
-       // holder.countryPhoto.setImageResource(itemList.get(position).getPhoto());
-        /*holder.mThumbView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-               // mActionListener.onMovieSelected(mItems.get(position));
-                Intent intent = new Intent(mContext, DetailsActivity.class);
-                mContext.startActivity(intent);
-            }
-        });*/
+        holder.movieName.setText(mItems.get(position).title);
+
 
     }
 

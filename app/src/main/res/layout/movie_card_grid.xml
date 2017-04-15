@@ -26,14 +26,14 @@
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:text="@string/app_name"
-            android:textColor="@color/white"
+            android:textColor="@color/headingColor"
             android:gravity="center"
             android:layout_below="@+id/country_photo"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
             android:maxLines="1"
             android:layout_alignParentBottom="true"
-            android:background="@color/transBlack"/>
+            android:background="@color/colorAccent"/>
 
     </RelativeLayout>
 
