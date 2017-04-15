@@ -16,4 +16,5 @@
         android:textColor="@color/textColor"
         android:text="@string/hello_blank_fragment" />
 
+
 </LinearLayout>

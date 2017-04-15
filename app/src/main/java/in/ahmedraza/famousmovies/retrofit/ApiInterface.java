@@ -1,8 +1,10 @@
 package in.ahmedraza.famousmovies.retrofit;
 
+import in.ahmedraza.famousmovies.custom.MovieReview;
 import in.ahmedraza.famousmovies.custom.MoviesCollection;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -21,5 +23,8 @@ public interface ApiInterface {
     Call<MoviesCollection> getTopRatedMovie(@Query("api_key") String apiKey);
 
 
+    @GET("movie/{id}/reviews")
+
+    Call<MovieReview> getMovieReview(@Path("id") Integer id, @Query("api_key") String apiKey);
 }
 

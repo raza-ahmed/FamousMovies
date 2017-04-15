@@ -33,6 +33,9 @@ public class MoviesCollection {
         @SerializedName("release_date")
         public String releasaeDate;
 
+        @SerializedName("id")
+        public int id;
+
 
 
         protected Movies(Parcel in) {
@@ -41,6 +44,7 @@ public class MoviesCollection {
             overview = in.readString();
             voteAverage = in.readFloat();
             releasaeDate = in.readString();
+            id = in.readInt();
         }
 
         @Override
@@ -50,6 +54,7 @@ public class MoviesCollection {
             dest.writeString(overview);
             dest.writeFloat(voteAverage);
             dest.writeString(releasaeDate);
+            dest.writeInt(id);
         }
 
         @Override

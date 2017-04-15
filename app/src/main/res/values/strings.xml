@@ -27,4 +27,6 @@
     <string name="movie_img">Poster Image</string>
     <string name="try_again">TRY AGAIN</string>
     <string name="error_msg">Something went wrong!!!</string>
+    <string name="empty_review_author">No Reviews Found</string>
+    <string name="empty_review_content">User yet to review the movie</string>
 </resources>

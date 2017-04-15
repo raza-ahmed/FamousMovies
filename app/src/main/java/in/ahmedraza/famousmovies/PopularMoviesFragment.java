@@ -36,8 +36,8 @@ import retrofit2.Response;
 public class PopularMoviesFragment extends Fragment {
 
 
-    private final static String API_KEY = "7b68fe1fe71d23838afc32790bd1c939";
-    private static final String TAG = FavouriteMoviesFragment.class.getSimpleName();
+
+    private static final String TAG = PopularMoviesFragment.class.getSimpleName();
 
     private MoviesCollection movies;
     private LinearLayout mLinearLayout;
@@ -136,7 +136,7 @@ public class PopularMoviesFragment extends Fragment {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
 
-        Call<MoviesCollection> call = apiService.getPopularMovie(API_KEY);
+        Call<MoviesCollection> call = apiService.getPopularMovie(Constants.API_KEY);
         String urlMovie = call.request().url().toString();
 
         Log.v("URL Movie", urlMovie);
